@@ -65,18 +65,36 @@ void addEdge(vector<node*> nodes,vector<node*> edges,char* firstLabel, char* sec
             
         } else {
             cout << "Some node or nodes don't exist" << endl;
+            first = NULl;
+            second = NULL;
+            temp = NULL;
+            delete first;
+            delete second;
+            delete temp;
         }
         
         
     } else {
         cout <<  "Can't have edge between the same nodes" << endl;
+        
         return;
     }
     
     
 }
 
-void removeVert() {
+void removeVert(vector<node*> nodes,vector<node*> edges,char* label) {
+    bool there;
+    if(nodes.empty()) {
+        cout << "No nodes!" << endl;
+        return;
+    }
+    vector<node*>::iterator i;
+    for(i=nodes.begin(); i != nodes.end(); i++) {
+        if(*(*i->getLabel()) == *label) {
+            
+        }
+    }
     
     
     
