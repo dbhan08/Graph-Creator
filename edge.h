@@ -6,7 +6,7 @@ using namespace std;
 
 
 class edge {
-    
+public:
     edge(char* label);
     ~edge();
     void setFirst(node* first);

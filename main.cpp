@@ -11,15 +11,15 @@ void addVertex(vector<node*> nodes, char* label) {
     node* temp = new node(label);
     bool there = false;
     vector<node*>:: iterator i;
-    for(i=nodes.begin(); i !+ nodes.end(); v++) {
-        if(*(*i->getLabel()) == *label) {
+    for(i=nodes.begin(); i != nodes.end(); i++) {
+        if(*((*i)->getLabel()) == *label) {
             there = true;
         }
     }
     if(!there) {
         nodes.push_back(temp);
     } else {
-        temp = NULL
+        temp = NULL;
         delete temp;
     }
     
@@ -28,7 +28,7 @@ void addVertex(vector<node*> nodes, char* label) {
 
 
 
-void addEdge(vector<node*> nodes,vector<node*> edges,char* firstLabel, char* secondLabel ,char* label) {
+void addEdge(vector<node*> nodes,vector<edge*> edges,char* firstLabel, char* secondLabel ,char* label) {
     edge* temp = new edge(label);
     node* first = NULL;
     node* second = NULL;
@@ -38,10 +38,10 @@ void addEdge(vector<node*> nodes,vector<node*> edges,char* firstLabel, char* sec
     for(i= nodes.begin(); i != nodes.end(); i++) {
         
         
-        if(*(*i->getLabel())==*firstLabel) {
+        if(*((*i)->getLabel())==*firstLabel) {
             first = *i;
             
-        } else if(*(*i->getLabel())==*secondLabel) {
+        } else if(*((*i)->getLabel())==*secondLabel) {
             second = *i;
         }
         
@@ -51,7 +51,7 @@ void addEdge(vector<node*> nodes,vector<node*> edges,char* firstLabel, char* sec
     if(first != second) {
         vector<edge*>::iterator j;
         for(j=edges.begin(); j != edges.end(); j++) {
-            if(*j->getFirst == first && *j->getSecond() == second) {
+            if((*j)->getFirst() == first && (*j)->getSecond() == second) {
                 there = true;
             }
         }
@@ -59,13 +59,13 @@ void addEdge(vector<node*> nodes,vector<node*> edges,char* firstLabel, char* sec
         if(there) {
             cout << "The edge already exists";
         } else if(first != NULL && second != NULL) {
-            temp->setFist(first);
+            temp->setFirst(first);
             temp->setSecond(second);
             edges.push_back(temp);
             
         } else {
             cout << "Some node or nodes don't exist" << endl;
-            first = NULl;
+            first = NULL;
             second = NULL;
             temp = NULL;
             delete first;
@@ -83,6 +83,62 @@ void addEdge(vector<node*> nodes,vector<node*> edges,char* firstLabel, char* sec
     
 }
 
+
+void removeEdge(vector<node*> nodes,vector<edge*> edges,char *firstLabel, char *secondLabel) {
+    node* first = NULL;
+    node* second = NULL;
+    bool exist = false;
+    if(edges.empty()) {
+        cout << "There are no edges!" << endl;
+        return;
+    }
+    
+    vector<node*>:: iterator i;
+    for(i= nodes.begin(); i != nodes.end(); i++) {
+        
+        
+        if(*((*i)->getLabel())==*firstLabel) {
+            first = *i;
+            
+        } else if(*((*i)->getLabel())==*secondLabel) {
+            second = *i;
+        }
+        
+        
+    }
+
+    if(first != second) {
+        
+        
+        vector<edge*>::iterator j;
+        for(j=edges.begin(); j != edges.end(); j++) {
+            if(((*j)->getFirst() == first && (*j)->getSecond() == second) || ((*j)->getFirst() == second && (*j)->getSecond() == first)) {
+                exist = true;
+                edges.erase(j);
+                first = NULL;
+                second = NULL;
+                delete first;
+                delete second;
+               
+            }
+        }
+        if(!exist) {
+            cout << "Some node does not exist!" << endl;
+        }
+        
+    } else {
+        
+        cout << "They are the same two nodes" << endl;
+        
+    }
+    
+   
+
+    
+    
+    
+}
+
 void removeVert(vector<node*> nodes,vector<node*> edges,char* label) {
     bool there;
     if(nodes.empty()) {
@@ -90,9 +146,14 @@ void removeVert(vector<node*> nodes,vector<node*> edges,char* label) {
         return;
     }
     vector<node*>::iterator i;
+    vector<edge*>:: iterator k;
     for(i=nodes.begin(); i != nodes.end(); i++) {
-        if(*(*i->getLabel()) == *label) {
-            
+        if(*((*i)->getLabel()) == *label) {
+            for(k=edges.begin(); k!= edges.end(); k++) {
+                if(*k->getFirst() == *i || *k->getSecond() == *i) {
+                    
+                }
+            }
         }
     }
     
@@ -101,10 +162,7 @@ void removeVert(vector<node*> nodes,vector<node*> edges,char* label) {
 }
 
 
-void removeEdge() {
-    
-    
-}
+
 
 
 int main() {

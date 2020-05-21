@@ -9,7 +9,7 @@ using namespace std;
 edge::edge(char* newLabel) {
     
     label = newLabel;
-    value = atoi(*label);
+    value = atoi(label);
     first = NULL;
     second = NULL;
     
