@@ -1,5 +1,4 @@
-#ifndef node_h
-#define node_h
+
 
 #include <iostream>
 
@@ -9,7 +8,7 @@ using namespace std;
 class node {
     
 public:
-    node(char*);
+    node(char* label);
     ~node();
     char* getLabel();
     void setLabel(char*);
@@ -20,7 +19,7 @@ public:
     
     
     
-    private;
+private:
     
     char* label;
     

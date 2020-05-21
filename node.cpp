@@ -20,8 +20,8 @@ char* node::getLabel() {
 }
 
 
-node* ~node() {
-    delete *label;
+node::~node() {
+    delete &label;
     
 }
 

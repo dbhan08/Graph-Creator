@@ -6,8 +6,9 @@ using namespace std;
 
 
 
-edge::edge(char* label) {
+edge::edge(char* newLabel) {
     
+    label = newLabel;
     value = atoi(label);
     first = NULL;
     second = NULL;
@@ -22,7 +23,7 @@ edge::~edge() {
     
     first = NULL;
     second = NULL;
-    delete value;
+    delete &label;
 }
 
 
@@ -42,7 +43,7 @@ node* edge::getFirst() {
 }
 
 
-node* edge::getFirst() {
+node* edge::getSecond() {
     return second;
 }
 
@@ -56,5 +57,5 @@ void edge::setValue(int newValue) {
 
 
 int edge::getValue() {
-    return valuel
+    return value;
 }

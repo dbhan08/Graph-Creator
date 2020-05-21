@@ -1,5 +1,3 @@
-#ifndef edge_h
-#define edge_h
 
 #include <iostream>
 #include "node.h"
@@ -21,6 +19,7 @@ class edge {
     
     
 private:
+    char* label;
     node* first;
     node* second;
     int value;
@@ -29,4 +28,3 @@ private:
     
 };
 
-#endif
