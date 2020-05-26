@@ -171,6 +171,24 @@ void removeVert(vector<node*> nodes,vector<edge*> edges,char* label) {
     
     
 }
+
+void printadj(vector<node*> nodes,vector<edge*> edges) {
+    
+    
+    if(nodes.empty()) {
+        cout << "No nodes!" << endl;
+        return;
+    }
+     vector<node*>::iterator i;
+    
+    for(i=nodes.begin(); i != nodes.end(); i++) {
+        cout << *(*i)->getLabel() << "\t";
+        
+    }
+    
+    
+    
+}
                         
 
 
@@ -178,9 +196,87 @@ void removeVert(vector<node*> nodes,vector<edge*> edges,char* label) {
 
 
 int main() {
+    bool run = true;
     vector<node*> vertices;
     vector<edge*> edges;
     
+    char inp[50];
+    char inp2[50];
+    char inp3[50];
+    char inp4[50];
+    
+    
+    
+    while(run) {
+        cout << "This is a graph creator!" << endl;
+        cout << "Enter '1' to add a vertex!" << endl;
+        cout << "Enter '2' to add an edge!" << endl;
+        cout << "Enter '3' to delete a vertex!" << endl;
+        cout << "Enter '4' to delete an edge!" << endl;
+        cout << "Enter '5' to  print shortest path!" << endl;
+        cout << "Enter 'q' to quit" << endl;
+        cin >> inp;
+        cin.clear();
+        cin.ignore(100000,'\n');
+        if(strcmp("1",inp) == 0) {
+            cout << "What value would you like to assign?" << endl;
+            cin >> inp2;
+            cin.clear();
+            cin.ignore(100000,'\n');
+            addVertex(vertices,inp2);
+            printadj(vertices,edges);
+            
+            
+        } else if(strcmp("2",inp) == 0) {
+            cout << "What is the label of the first vertex" << endl;
+            cin >> inp2;
+            cin.clear();
+            cin.ignore(100000,'\n');
+            cout << "What is the label of the second vertex" << endl;
+            cin >> inp3;
+            cin.clear();
+            cout << "What is the label of the edge?" << endl;
+            cin >> inp4;
+            cin.clear();
+            cin.ignore(100000,'\n');
+            //char*firstLabel = new char[inp1];
+            //char*secondLabel = new char[inp2];
+           // char*label = new char[inp4];
+            
+            addEdge(vertices,edges,inp3, inp3 ,inp4);
+            printadj(vertices,edges);
+            
+        } else if(strcmp("3",inp) == 0) {
+            cout << "What vertex would you liike to delete?" << endl;
+            cin >> inp2;
+            cin.clear();
+            cin.ignore(100000,'\n');
+            removeVert(vertices,edges,inp2);
+            printadj(vertices,edges);
+            
+        } else if(strcmp("4",inp) == 0) {
+            cout << "What is the label of the first vertex" << endl;
+            cin >> inp2;
+            cin.clear();
+            cin.ignore(100000,'\n');
+            cout << "What is the label of the second vertex" << endl;
+            cin >> inp3;
+            cin.clear();
+            
+           removeEdge(vertices,edges,inp2,inp3);
+            printadj(vertices,edges);
+            
+        } else if(strcmp("5",inp) == 0)  {
+            // shortest path
+            
+        } else if(strcmp("q",inp) == 0) {
+            run = false;
+            
+        } else {
+            cout << "Enter a valid option!" << endl;
+        }
+        
+    }
     
     
 }
