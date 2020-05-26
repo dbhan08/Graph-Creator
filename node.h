@@ -8,10 +8,10 @@ using namespace std;
 class node {
     
 public:
-    node(char* label);
+    node(char label);
     ~node();
-    char* getLabel();
-    void setLabel(char*);
+    char getLabel();
+    void setLabel(char);
    
    
     
@@ -21,6 +21,6 @@ public:
     
 private:
     
-    char* label;
+    char label;
     
 };

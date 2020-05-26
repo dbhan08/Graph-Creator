@@ -5,7 +5,7 @@
 using namespace std;
 
 
-node::node(char* newLabel) {
+node::node(char newLabel) {
     label = newLabel;
     
     
@@ -13,7 +13,7 @@ node::node(char* newLabel) {
 
 
 
-char* node::getLabel() {
+char node::getLabel() {
     return label;
     
     
@@ -26,7 +26,7 @@ node::~node() {
 }
 
 
-void node::setLabel(char* newLabel) {
+void node::setLabel(char newLabel) {
     
     label = newLabel;
     

@@ -6,10 +6,10 @@ using namespace std;
 
 
 
-edge::edge(char* newLabel) {
+edge::edge(char newLabel) {
     
     label = newLabel;
-    value = atoi(label);
+    value = label -'0';
     first = NULL;
     second = NULL;
     

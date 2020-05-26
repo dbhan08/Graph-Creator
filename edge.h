@@ -7,7 +7,7 @@ using namespace std;
 
 class edge {
 public:
-    edge(char* label);
+    edge(char label);
     ~edge();
     void setFirst(node* first);
     void setSecond(node* second);
@@ -19,7 +19,7 @@ public:
     
     
 private:
-    char* label;
+    char label;
     node* first;
     node* second;
     int value;
