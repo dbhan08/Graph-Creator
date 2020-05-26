@@ -139,8 +139,9 @@ void removeEdge(vector<node*> nodes,vector<edge*> edges,char *firstLabel, char *
     
 }
 
-void removeVert(vector<node*> nodes,vector<node*> edges,char* label) {
-    bool there;
+void removeVert(vector<node*> nodes,vector<edge*> edges,char* label) {
+    bool there = false;
+    bool hasEdge = false;
     if(nodes.empty()) {
         cout << "No nodes!" << endl;
         return;
@@ -149,17 +150,28 @@ void removeVert(vector<node*> nodes,vector<node*> edges,char* label) {
     vector<edge*>:: iterator k;
     for(i=nodes.begin(); i != nodes.end(); i++) {
         if(*((*i)->getLabel()) == *label) {
+            there = true;
             for(k=edges.begin(); k!= edges.end(); k++) {
-                if(*k->getFirst() == *i || *k->getSecond() == *i) {
-                    
+                if((*k)->getFirst() == *i || (*k)->getSecond() == *i) {
+                    hasEdge = true;
+                    break;
                 }
             }
+        }
+        if(hasEdge && there) {
+            removeEdge(nodes,edges,(*k) -> getFirst() -> getLabel(), (*k) -> getSecond() -> getLabel());
+            nodes.erase(i);
+        } else if(there && !hasEdge) {
+            nodes.erase(i);
+        } else{
+            cout << "Couldn't find node" << endl;
         }
     }
     
     
     
 }
+                        
 
 
 
