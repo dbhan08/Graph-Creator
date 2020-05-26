@@ -36,7 +36,7 @@ void addVertex(vector<node*> &nodes, char label) {
 
 
 
-void addEdge(vector<node*> &nodes,vector<edge*> &edges,char* firstLabel, char* secondLabel ,char* label) {
+void addEdge(vector<node*> &nodes,vector<edge*> &edges,char firstLabel, char secondLabel ,char label) {
     edge* temp = new edge(label);
     node* first = NULL;
     node* second = NULL;
@@ -46,10 +46,10 @@ void addEdge(vector<node*> &nodes,vector<edge*> &edges,char* firstLabel, char* s
     for(i= nodes.begin(); i != nodes.end(); i++) {
         
         
-        if(*((*i)->getLabel())==*firstLabel) {
+        if((*i)->getLabel()==firstLabel) {
             first = *i;
             
-        } else if(*((*i)->getLabel())==*secondLabel) {
+        } else if((*i)->getLabel()==secondLabel) {
             second = *i;
         }
         
@@ -91,8 +91,8 @@ void addEdge(vector<node*> &nodes,vector<edge*> &edges,char* firstLabel, char* s
     
 }
 
-/*
-void removeEdge(vector<node*> &nodes,vector<edge*> &edges,char *firstLabel, char *secondLabel) {
+
+void removeEdge(vector<node*> &nodes,vector<edge*> &edges,char firstLabel, char secondLabel) {
     node* first = NULL;
     node* second = NULL;
     bool exist = false;
@@ -105,10 +105,10 @@ void removeEdge(vector<node*> &nodes,vector<edge*> &edges,char *firstLabel, char
     for(i= nodes.begin(); i != nodes.end(); i++) {
         
         
-        if(*((*i)->getLabel())==*firstLabel) {
+        if((*i)->getLabel()==firstLabel) {
             first = *i;
             
-        } else if(*((*i)->getLabel())==*secondLabel) {
+        } else if((*i)->getLabel()==secondLabel) {
             second = *i;
         }
         
@@ -147,7 +147,7 @@ void removeEdge(vector<node*> &nodes,vector<edge*> &edges,char *firstLabel, char
     
 }
 
-void removeVert(vector<node*> &nodes,vector<edge*> &edges,char* label) {
+void removeVert(vector<node*> &nodes,vector<edge*> &edges,char label) {
     bool there = false;
     bool hasEdge = false;
     if(nodes.empty()) {
@@ -157,7 +157,7 @@ void removeVert(vector<node*> &nodes,vector<edge*> &edges,char* label) {
     vector<node*>::iterator i;
     vector<edge*>:: iterator k;
     for(i=nodes.begin(); i != nodes.end(); i++) {
-        if(*((*i)->getLabel()) == *label) {
+        if((*i)->getLabel() == label) {
             there = true;
             for(k=edges.begin(); k!= edges.end(); k++) {
                 if((*k)->getFirst() == *i || (*k)->getSecond() == *i) {
@@ -179,7 +179,7 @@ void removeVert(vector<node*> &nodes,vector<edge*> &edges,char* label) {
     
     
 }
-*/
+
 void printadj(vector<node*> &nodes,vector<edge*> &edges) {
     
     
@@ -233,7 +233,7 @@ int main() {
             cin.clear();
             cin.ignore(100000,'\n');
            
-            char* label = new char[inp2];
+           // char* label = new char[inp2];
             addVertex(vertices,inp2);
             printadj(vertices,edges);
             
@@ -250,11 +250,12 @@ int main() {
             cin >> inp4;
             cin.clear();
             cin.ignore(100000,'\n');
+            /*
             char*firstLabel = new char[inp2];
             char*secondLabel = new char[inp3];
             char*label = new char[inp4];
-            
-           // addEdge(vertices,edges,firstLabel, secondLabel ,label);
+            */
+            addEdge(vertices,edges,inp2,inp3,inp4);
             printadj(vertices,edges);
             
         } else if(strcmp("3",inp) == 0) {
@@ -262,8 +263,8 @@ int main() {
             cin >> inp2;
             cin.clear();
             cin.ignore(100000,'\n');
-            char* label = new char[inp2];
-           // removeVert(vertices,edges,label);
+           // char* label = new char[inp2];
+            removeVert(vertices,edges,inp2);
             printadj(vertices,edges);
             
         } else if(strcmp("4",inp) == 0) {
@@ -274,10 +275,10 @@ int main() {
             cout << "What is the label of the second vertex" << endl;
             cin >> inp3;
             cin.clear();
-            char* firstLabel = new char[inp2];
-            char* secondLabel = new char[inp3];
+           // char* firstLabel = new char[inp2];
+           // char* secondLabel = new char[inp3];
             
-          // removeEdge(vertices,edges,firstLabel,secondLabel);
+           removeEdge(vertices,edges,inp2,inp3);
             printadj(vertices,edges);
             
         } else if(strcmp("5",inp) == 0)  {
