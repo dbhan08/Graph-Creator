@@ -25,8 +25,7 @@ void addVertex(vector<node*> &nodes, char label) {
         nodes.push_back(temp);
         
     } else {
-        cout << "bruh" << endl;
-        temp = NULL;
+                temp = NULL;
         delete temp;
     }
     
@@ -85,6 +84,13 @@ void addEdge(vector<node*> &nodes,vector<edge*> &edges,char firstLabel, char sec
         cout <<  "Can't have edge between the same nodes" << endl;
         
         return;
+    }
+    
+    
+    vector<edge*>::iterator l;
+    for(l = edges.begin(); l != edges.end(); l++) {
+        cout << (*l)->getFirst()->getLabel() << endl;
+         cout << (*l)->getSecond()->getLabel() << endl;
     }
     
     
@@ -203,7 +209,7 @@ void printadj(vector<node*> &nodes,vector<edge*> &edges) {
             vector<edge*>:: iterator n;
             for(n=edges.begin(); n!=edges.end(); n++) {
                 
-                if(((*n)->getFirst() == (*k) && (*n)->getSecond() == (*i)) || ((*n)->getFirst() == (*i) && (*n)->getSecond() == (*k))){
+                if(((*n)->getFirst() == (*k) && (*n)->getSecond() == (*j)) || ((*n)->getFirst() == (*j) && (*n)->getSecond() == (*k))){
                     edged = true;
                     break;
                 }
