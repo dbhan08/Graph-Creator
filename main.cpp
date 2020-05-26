@@ -13,7 +13,7 @@ void addVertex(vector<node*> &nodes, char label) {
     bool there = false;
     vector<node*>:: iterator i;
     for(i=nodes.begin(); i != nodes.end(); i++) {
-        cout << (*i)->getLabel() << endl;
+        
         
         if((*i)->getLabel() == label) {
             
@@ -22,7 +22,6 @@ void addVertex(vector<node*> &nodes, char label) {
         
     }
     if(!there) {
-        cout << "less goo" << endl;
         nodes.push_back(temp);
         
     } else {
@@ -188,14 +187,44 @@ void printadj(vector<node*> &nodes,vector<edge*> &edges) {
         return;
     }
      vector<node*>::iterator i;
-    
+    cout << "\t";
     for(i=nodes.begin(); i != nodes.end(); i++) {
         cout << (*i)->getLabel() << "\t";
         
     }
     
-    
     cout << endl;
+    vector<node*>::iterator j;
+    vector<node*>::iterator k;
+    for(j=nodes.begin(); j != nodes.end(); j++) {
+        cout<< (*j)->getLabel();
+        for(k=nodes.begin(); k != nodes.end(); k++) {
+            bool edged = false;
+            vector<edge*>:: iterator n;
+            for(n=edges.begin(); n!=edges.end(); n++) {
+                
+                if(((*n)->getFirst() == (*k) && (*n)->getSecond() == (*i)) || ((*n)->getFirst() == (*i) && (*n)->getSecond() == (*k))){
+                    edged = true;
+                    break;
+                }
+                
+            }
+            
+            if(edged) {
+                cout << "\t1";
+            } else {
+                cout << "\t0";
+            }
+            
+            
+            
+        }
+        cout << endl;
+    }
+    
+    
+    
+    
 }
                         
 
