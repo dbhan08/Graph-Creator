@@ -87,11 +87,7 @@ void addEdge(vector<node*> &nodes,vector<edge*> &edges,char firstLabel, char sec
     }
     
     
-    vector<edge*>::iterator l;
-    for(l = edges.begin(); l != edges.end(); l++) {
-        cout << (*l)->getFirst()->getLabel() << endl;
-         cout << (*l)->getSecond()->getLabel() << endl;
-    }
+ 
     
     
 }
@@ -132,6 +128,10 @@ void removeEdge(vector<node*> &nodes,vector<edge*> &edges,char firstLabel, char 
                 second = NULL;
                 delete first;
                 delete second;
+                break;
+               
+             
+              
                
             }
         }
@@ -146,7 +146,6 @@ void removeEdge(vector<node*> &nodes,vector<edge*> &edges,char firstLabel, char 
     }
     
    
-
     
     
     
@@ -175,13 +174,18 @@ void removeVert(vector<node*> &nodes,vector<edge*> &edges,char label) {
             removeEdge(nodes,edges,(*k) -> getFirst() -> getLabel(), (*k) -> getSecond() -> getLabel());
             nodes.erase(i);
         } else if(there && !hasEdge) {
+            
             nodes.erase(i);
+            return;
+            
+
+            
         } else{
             cout << "Couldn't find node" << endl;
         }
     }
     
-    
+ 
     
 }
 
